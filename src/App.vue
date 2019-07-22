@@ -1,14 +1,11 @@
 <template>
     <div id="app">
-        <img alt="Vue logo" src="./assets/logo.png" />
-        <HelloWorld msg="Welcome to Your Vue.js App" />
         <input v-model.number="limit" type="text">
-        <CounterGroup :limit=limit />
+        <CounterGroup :limit="limit" />
     </div>
 </template>
 
 <script>
-import HelloWorld from "./components/HelloWorld.vue";
 import CounterGroup from "./components/CounterGroup.vue";
 export default {
     name: "app",
@@ -17,8 +14,12 @@ export default {
             limit:0
         }
     },
+    watch:{
+        limit:function(){
+            this.$store.commit('clear')
+        }
+    },
     components: {
-        HelloWorld,
         CounterGroup
     }
 };

@@ -1,30 +1,22 @@
 <template>
-    <div class="">
-        <Counter :click-call-back="ParentTest" v-for="n in limit" :key="n"/>
-        <div>{{CounterSum}}</div>
+    <div class>
+        <Counter v-for="n in limit" :key="n" />
+        <div>{{countSum}}</div>
     </div>
 </template>
 
 <script>
 import Counter from "./Counter.vue";
-// import CounterSum from "./CounterSum.vue";
-
+import { mapState } from "vuex";
 export default {
-    props:["limit"],
-    components:{
-        Counter,
+    props: ["limit"],
+    components: {
+        Counter
     },
-    data() { 
-        return {
-            CounterSum:0
-        }
-    },
-    methods:{
-        ParentTest(val){
-            this.CounterSum+=val
-        }
+    computed: mapState(["countSum"]),
+    methods: {
     }
- }
+};
 </script>
 
 <style lang="" scoped>
